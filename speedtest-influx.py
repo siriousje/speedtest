@@ -4,16 +4,7 @@
 import re
 import subprocess
 import datetime
-import os
-from influxdb import InfluxDBClient
-
-influx_account = {
-    'hostname': os.getenv('INFLUX_HOSTNAME', 'localhost'),
-    'port': os.getenv('INFLUX_PORT', 8086),
-    'username': os.getenv('INFLUX_USERNAME', 'netmonitor'),
-    'password': os.getenv('INFLUX_PASSWORD', ''),
-    'database': os.getenv('INFLUX_DATABASE', 'netmonitor')
-}
+import influx
 
 # sends collected data to influx
 def send_data_to_influx(timestamp, ping, download, upload):
@@ -26,9 +17,7 @@ def send_data_to_influx(timestamp, ping, download, upload):
             "ping": float(ping)
         }
     }]
-    # host, port, user, password, database
-    influx = InfluxDBClient(influx_account['hostname'], influx_account['port'], influx_account['username'], influx_account['password'], influx_account['database'])
-    influx.write_points(payload)
+    influx.write_to_influxdb(payload)
 
 # parses the response
 def parse_response(response):

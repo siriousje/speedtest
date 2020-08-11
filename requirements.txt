@@ -1,0 +1,5 @@
+influxdb==5.3.0
+influxdb-client==1.9.0
+PyYAML==5.3.1
+requests==2.24.0
+speedtest-cli==2.1.2

@@ -6,15 +6,7 @@ import socket
 import datetime
 import time
 import os
-from influxdb import InfluxDBClient
-
-influx_account = {
-    'hostname': os.getenv('INFLUX_HOSTNAME', 'localhost'),
-    'port': os.getenv('INFLUX_PORT', 8086),
-    'username': os.getenv('INFLUX_USERNAME', 'netmonitor'),
-    'password': os.getenv('INFLUX_PASSWORD', ''),
-    'database': os.getenv('INFLUX_DATABASE', 'netmonitor')
-}
+import influx
 
 # sends collected data to influx
 def send_data_to_influx(timestamp, latency):
@@ -25,10 +17,7 @@ def send_data_to_influx(timestamp, latency):
             "latency": float(latency)
         }
     }]
-    # host, port, user, password, database
-    influx = InfluxDBClient(influx_account['hostname'], influx_account['port'], influx_account['username'], influx_account['password'], influx_account['database'])
-    influx.write_points(payload)
-
+    influx.write_to_influxdb(payload)
 
 # connects to www.google.com 
 def time_remote_host():
