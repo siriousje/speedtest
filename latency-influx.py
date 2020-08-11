@@ -7,6 +7,7 @@ import re
 import subprocess
 import os
 import influx
+import time
 
 hosts = ['www.google.com', 'www.xs4all.nl', 'www.netflix.com', 'www.sirious.net']
 
@@ -37,9 +38,15 @@ def ping_remote_host(host):
     return float(60.0)
 
 # does a single run
-def main():
+def single_test():
     for host in hosts:
         send_data_to_influx(datetime.datetime.utcnow(), host, ping_remote_host(host))
+
+# does multiple
+def main():
+    for i in range(5): # again 5 should be ok as the tests also take a bit of time
+        single_test()
+        time.sleep(10)
 
 if __name__ == '__main__':
     main()
