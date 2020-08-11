@@ -34,9 +34,9 @@ def send_data_to_influx(timestamp, latency):
 def time_remote_host():
     start = datetime.datetime.now()
     try:
-        host = socket.gethostbyname("www.google.com")
-        s = socket.create_connection((host, 80), 30)
-        s.close()
+        socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        socket.connect(('www.google.com', 80))
+        socket.close()
         return float((datetime.datetime.now() - start).microseconds) / 1000
     except:
         return float(30.0) # timeout
