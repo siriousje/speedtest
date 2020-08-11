@@ -31,8 +31,8 @@ def get_influx_config():
 def write_to_influxdb(payload):
     global influx_account
     # host, port, user, password, database
-    influx = InfluxDBClient(influx_account['hostname'], influx_account['port'], influx_account['username'], influx_account['password'], influx_account['database'])
-    influx.write_points(payload)
+    influx_client = InfluxDBClient(influx_account['hostname'], influx_account['port'], influx_account['username'], influx_account['password'], influx_account['database'])
+    influx_client.write_points(payload)
 
 influx_account = get_influx_config()
 
