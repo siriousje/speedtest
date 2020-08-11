@@ -10,8 +10,21 @@ These scripts are part of a speedtest/netmonitor project to use a Raspberry Pi h
 
 ## installation
 
-checkout the repository under `/opt` so that it creates `/opt/speedtest`
-then make sure to install all requirements: `pip3 install -r requirements.txt`
+Clone this repository under `/opt` so that it creates `/opt/speedtest`
+Then make sure to install all requirements: `sudo pip3 install -r requirements.txt`\
+
+Copy `config.yml.sample` to `config.yml` and update the values for your installation, then add the scripts to crontab using `sudo crontab -e`
+
+it should look something like
+
+```
+*/5 * * * * python3 /opt/speedtest/speedtest-influx.py
+*/1 * * * * python3 /opt/speedtest/internet-influx.py
+*/1 * * * * python3 /opt/speedtest/latency-influx.py
+```
+
+Change the numbers to what you want, I run the speedtest only once per 5 minutes
+
 
 ## Environment variables
 
