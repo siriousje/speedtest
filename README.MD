@@ -7,6 +7,8 @@ These scripts are part of a speedtest/netmonitor project to use a Raspberry Pi h
 - Grafana installed to display the collected results
 - These Python3 scripts setup in crontab to run regularly.
 
+You can read a blogpost with detailed instructions on [sirious.net](https://sirious.net/sirious/?p=481)
+
 
 ## Installation
 
