@@ -8,7 +8,7 @@ These scripts are part of a speedtest/netmonitor project to use a Raspberry Pi h
 - These Python3 scripts setup in crontab to run regularly.
 
 
-## installation
+## Installation
 
 Clone this repository under `/opt` so that it creates `/opt/speedtest`
 Then make sure to install all requirements: `sudo pip3 install -r requirements.txt`\
@@ -25,10 +25,9 @@ it should look something like
 
 Change the numbers to what you want, I run the speedtest only once per 5 minutes
 
-
 ## Environment variables
 
-You can setup the following environment variables to finetune your InfluxDB. Given that in most cases the script will run from the same host you probably only need to setup the password.
+Environment variables will override your config.yml. You can setup the following environment variables to finetune your InfluxDB. Given that in most cases the script will run from the same host you probably only need to setup the password.
 
 - `INFLUX_HOSTNAME` - hostname for influxdb, defaults to `localhost`
 - `INFLUX_PORT` - port for the influxdb service, defaults to 8086
