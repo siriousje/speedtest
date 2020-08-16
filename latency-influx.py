@@ -35,7 +35,7 @@ def ping_remote_host(host):
             return float(ping)
     except:
         pass
-    return float(60.0)
+    return float(-1.0)
 
 # does a single run
 def single_test():
