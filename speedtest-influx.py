@@ -32,10 +32,10 @@ def parse_response(response):
         time = datetime.datetime.utcnow()
         send_data_to_influx(time, ping, download, upload)
 
-# does a single run
+# does a single run, use speedtest-cli --list to find servers, we picked internode sydney
 def main():
     try:
-        parse_response(subprocess.Popen('/usr/local/bin/speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8'))
+        parse_response(subprocess.Popen('/usr/local/bin/speedtest-cli --server 2173 --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8'))
     except:
         print("Unable to parse response, maybe next time")
         pass
