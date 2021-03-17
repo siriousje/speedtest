@@ -31,10 +31,10 @@ def parse_response(response):
         upload = upload[0].replace(',', '.')
         time = datetime.datetime.utcnow()
         # starting to wonder if ping == 0 is just a faulty measurement
-        if ping  > 0:
-            send_data_to_influx(time, ping, download, upload)
-        else:
-            print(f"ping was 0, upload: {upload}, download: {download}")
+        #if ping  > 0:
+        send_data_to_influx(time, ping, download, upload)
+        #else:
+        #    print(f"ping was 0, upload: {upload}, download: {download}")
 
 # does a single run, use speedtest-cli --list to find servers
 def main():
