@@ -5,6 +5,7 @@ import re
 import subprocess
 import datetime
 import influx
+import traceback
 
 # sends collected data to influx
 def send_data_to_influx(timestamp, ping, download, upload):
@@ -31,7 +32,7 @@ def parse_response(response):
         upload = upload[0].replace(',', '.')
         time = datetime.datetime.utcnow()
         # starting to wonder if ping == 0 is just a faulty measurement
-        if int(ping)  > 0:
+        if float(ping)  > 0.0:
             send_data_to_influx(time, ping, download, upload)
         else:
             print(f"ping was 0, upload: {upload}, download: {download}")
@@ -41,6 +42,7 @@ def main():
     try:
         parse_response(subprocess.Popen('/usr/local/bin/speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8'))
     except:
+        traceback.print_exc() 
         print("Unable to parse response, maybe next time")
         pass
 
