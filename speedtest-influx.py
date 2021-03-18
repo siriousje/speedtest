@@ -32,7 +32,7 @@ def parse_response(response):
         upload = upload[0].replace(',', '.')
         time = datetime.datetime.utcnow()
         # starting to wonder if ping == 0 is just a faulty measurement
-        if float(ping)  > 0.0:
+        if float(ping)  > 1.0:
             send_data_to_influx(time, ping, download, upload)
         else:
             print(f"ping was 0, upload: {upload}, download: {download}")
