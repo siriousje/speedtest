@@ -40,7 +40,7 @@ def parse_response(response):
 # does a single run, use speedtest-cli --list to find servers
 def main():
     try:
-        parse_response(subprocess.Popen('/usr/local/bin/speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8'))
+        parse_response(subprocess.Popen('/usr/local/bin/speedtest-cli --simple --secure', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8'))
     except:
         traceback.print_exc() 
         print("Unable to parse response, maybe next time")
